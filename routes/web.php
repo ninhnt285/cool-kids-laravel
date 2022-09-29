@@ -30,3 +30,7 @@ Route::middleware('auth')->group(function() {
     // Events
     Route::resource('events', EventController::class);
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
