@@ -1,0 +1,107 @@
+.sidebar .logo .simple-text {
+    text-transform: uppercase;
+    padding: 5px 0px;
+    display: inline-block;
+    font-size: 18px;
+    color: #3C4858;
+    white-space: nowrap;
+    font-weight: 400;
+    line-height: 30px;
+    overflow: hidden;
+    text-align: center;
+    display: block;
+  }
+
+@media (min-width: 991px) {
+    .sidebar .nav .nav-item.active-pro {
+        position: absolute;
+        width: 100%;
+        bottom: 13px;
+        left: 0;
+      }
+}
+
+.card .card-footer.chart-legend {
+  margin: 0 20px 10px;
+  padding-top: 10px;
+  border-top: 1px solid #eeeeee;
+  display: block;
+}
+
+.card .card-footer.chart-legend h6 {
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.5em;
+}
+
+.card .card-footer.chart-legend i.fa:nth-child(n+2) {
+  width: 18px;
+  text-align: center;
+  margin-left: 5px;
+}
+
+.ct-chart-bar .ct-label.ct-horizontal.ct-end {
+  -webkit-box-align: flex-start;
+  -webkit-align-items: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+  text-anchor: start;
+}
+
+.ct-label.ct-vertical.ct-start {
+  -webkit-box-align: flex-end;
+  -webkit-align-items: flex-end;
+  -ms-flex-align: flex-end;
+  align-items: flex-end;
+  -webkit-box-pack: flex-end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: flex-end;
+  justify-content: flex-end;
+  text-align: right;
+  text-anchor: end;
+}
+
+.card [class*="card-header-"] .card-icon-image {
+  padding: 0px;
+  margin-top: 0px;
+  background: none;
+  box-shadow: 0 0px 5px #555;
+}
+
+.image-thumb {
+  object-fit: cover;
+  object-position: center;
+  width: 100%;
+  max-height: 75px;
+}
+
+.event-image {
+    object-fit: cover;
+    object-position: center;
+    width: 100%;
+    max-height: 250px;
+}
+
+.active-small {
+  display: none;
+}
+
+@media (max-width:991px) {
+  .active-small {
+    display: block;
+  }
+}
+
+.main-panel > .content {
+  padding-top: 10px;
+  margin-top: 40px;
+}
+
+.card .card-body .push-top-form-group {
+  margin-top: 35px;
+}

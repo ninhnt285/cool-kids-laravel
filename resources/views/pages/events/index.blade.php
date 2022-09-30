@@ -1,17 +1,47 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Events') }}
-        </h2>
-    </x-slot>
+@extends('layouts.app')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    All events
-                </div>
+@section('content')
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-primary">
+            <div class="pull-left">
+              <h4 class="card-title">All Events</h4>
+              <p class="card-category"></p>
             </div>
+            @can('edit-events')
+              <a href="{{ route('events.create') }}" class="btn btn-round btn-fill btn-success pull-right">Add</a>
+            @endcan
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <thead class="text-primary">
+                <tr>
+                  <th class="text-center"></th>
+                  <th>Name</th>
+                  <th>Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach ($events as $event)
+                  <tr>
+                    <td><div class="image-container">@if($event->image_path)<img class="image-thumb rounded" style="width:75px; height: 75px;" src="{{asset('storage/' . $event->image_path) }}"/>@endif</div></td>
+                    <td><a href="{{ route('events.show', ['event' => $event]) }}">{{ $event->name }}</a></td>
+                    <td>{{ $event->short_description }}</td>
+                  </tr>
+                @endforeach
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card-footer">
+            {{ $events->links() }}
+          </div>
         </div>
+      </div>
     </div>
-</x-app-layout>
+  </div>
+@endsection

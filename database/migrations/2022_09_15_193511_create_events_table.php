@@ -16,10 +16,12 @@ return new class extends Migration
         Schema::create('events', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('slug')->unique();
             $table->string('image_path')->nullable();
-            $table->string('short_description');
-            $table->text('description');
-            $table->dateTime('date');
+            $table->string('short_description')->nullable();
+            $table->text('description')->nullable();
+            $table->dateTime('start_time')->nullable();
+            $table->dateTime('end_time')->nullable();
             $table->timestamps();
         });
     }
