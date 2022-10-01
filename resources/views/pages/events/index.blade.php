@@ -20,7 +20,7 @@
                 <thead class="text-primary">
                 <tr>
                   <th class="text-center"></th>
-                  <th>Name</th>
+                  <th style="min-width: 150px;">Name</th>
                   <th>Description</th>
                 </tr>
                 </thead>
