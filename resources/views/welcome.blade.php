@@ -74,7 +74,7 @@
         <div id="navbarContent" class="collapse navbar-collapse">
           <ul class="navbar-nav ml-auto">
             @auth
-              <li class="nav-item nl-simple"><a class="nav-link" href="{{ route('home') }}">Dashboard</a></li>
+              <li class="nav-item nl-simple"><a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a></li>
             @endauth
             @guest
               <li class="nav-item nl-simple"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
