@@ -80,8 +80,8 @@
               <li class="nav-item nl-simple"><a class="nav-link" href="{{ route('login') }}">Login</a></li>
             @endguest
             <li class="nav-item nl-simple"><a class="nav-link" href="#info-5">Our Mission</a></li>
-            <li class="nav-item nl-simple"><a class="nav-link" href="#hero-2">Locations</a></li>
-            <li class="nav-item nl-simple"><a class="nav-link" href="#reviews-3">Supporters</a></li>
+            <li class="nav-item nl-simple"><a class="nav-link" href="#pricing-1">Locations</a></li>
+            <li class="nav-item nl-simple"><a class="nav-link" href="#info-7">Supporters</a></li>
 
             {{-- <li class="nav-item nl-simple"><a class="nav-link" href="#faqs-1">Jobs</a></li> --}}
 
@@ -196,6 +196,65 @@
       </div>	   <!-- End container -->
     </div>		<!-- End Inner Background -->
   </section>	<!-- END INFO-5 -->
+
+  <!-- HERO-2
+        ============================================= -->
+  <section id="pricing-1" class="hero-section">
+    <!-- HERO TEXT -->
+    <div class="hero-2-txt division">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-10 col-xl-8 offset-md-1 offset-xl-2 text-center">
+            <!-- Title -->
+            <h3 class="h3-lg">Locations</h3>
+            <br>
+            <!-- Text -->
+          </div>
+        </div>	 <!-- End row -->
+
+        <div class="row">
+          <div class="col-lg-10 col-xl-10 offset-lg-1 offset-xl-1">
+            <div class="row">
+              <div class="col-md-4">
+                <div class="pricing-table wow fadeInRight">
+                  <div class="price-icon">
+                    <img class="img-150" src="{{ asset('img/welcome/MDCover.png') }}" alt="MD">
+                  </div>
+                  <div class="pricing-plan mb-10">
+                    <h5 class="h5-lg">Maryland Clubhouse</h5>
+                    <p>In Honor of Ken Singleton</sup>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="pricing-table wow fadeInRight">
+                  <div class="price-icon">
+                    <img class="img-150" src="{{ asset('img/welcome/NCCover.jpg') }}" alt="NC">
+                  </div>
+                  <div class="pricing-plan mb-10">
+                    <h5 class="h5-lg">North Carolina Clubhouse</h5>
+                    <p>In Honor of Dan Jansen</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="pricing-table wow fadeInRight">
+                  <div class="price-icon">
+                    <img class="img-fluid" src="{{ asset('img/welcome/TNCover.jpg') }}" alt="TN">
+                  </div>
+                  <div class="pricing-plan mb-10">
+                    <h5 class="h5-lg">Cool Kids Tennessee</h5>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>	 <!-- End container -->
+    </div> 	  <!-- END HERO TEXT -->
+  </section>	<!-- END HERO-2 -->
 
 
   <!-- FOOTER-2
