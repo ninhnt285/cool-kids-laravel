@@ -34,3 +34,7 @@ Route::middleware('auth')->group(function() {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+# AJAX request
+Route::post('/attend-event/{event}', [EventController::class, 'attend'])->where('id', '[0-9]+');
+Route::post('/unattend-event/{event}', [EventController::class, 'unattend'])->where('id', '[0-9]+');

@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\EventController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+// Authorization
+Route::controller(AuthController::class)->group(function() {
+    Route::post('register', 'register');
+    Route::post('login', 'login');
 });
+
+Route::middleware('auth:sanctum')->group(function() {
+    // Event Module
+    Route::apiResource('events', EventController::class)->except('index', 'show');
+    // User Module
+    Route::get('me', [AuthController::class, 'me']);
+});
+
+// Event Module
+Route::apiResource('events', EventController::class)->only('index', 'show');

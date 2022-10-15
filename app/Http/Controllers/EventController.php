@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
@@ -85,6 +86,12 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
+        $attending = false;
+        if ($user_id = Auth::id()) {
+            $attending = $event->users->contains($user_id);
+        }
+        $event['attending'] = $attending;
+
         return view('pages.events.show', [
             'event' => $event
         ]);
@@ -159,5 +166,33 @@ class EventController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function attend(Event $event) {
+        if ($user_id = Auth::id()) {
+            $event->users()->attach($user_id);
+            return response()->json([
+                'success' => true
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Un-authenticated!'
+            ], 401);
+        }
+    }
+
+    public function unattend(Event $event) {
+        if ($user_id = Auth::id()) {
+            $event->users()->detach([$user_id]);
+            return response()->json([
+                'success' => true
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Un-authenticated!'
+            ], 401);
+        }
     }
 }
