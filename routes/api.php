@@ -23,10 +23,11 @@ Route::controller(AuthController::class)->group(function() {
 });
 
 Route::middleware('auth:sanctum')->group(function() {
+    // User Module
+    Route::get('users/me', [AuthController::class, 'me']);
+
     // Event Module
     Route::apiResource('events', EventController::class)->except('index', 'show');
-    // User Module
-    Route::get('me', [AuthController::class, 'me']);
 });
 
 // Event Module
