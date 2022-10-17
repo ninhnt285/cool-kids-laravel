@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Api\BaseController;
 use App\Http\Resources\EventCollection;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Http\Resources\Event as EventResource;
+use Illuminate\Support\Facades\Auth;
 
 class EventController extends BaseController
 {
@@ -71,5 +71,33 @@ class EventController extends BaseController
     public function destroy($id)
     {
         //
+    }
+
+    public function attend(Event $event) {
+        if ($user_id = Auth::id()) {
+            $event->users()->attach($user_id);
+            return response()->json([
+                'success' => true
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Un-authenticated!'
+            ], 401);
+        }
+    }
+
+    public function unattend(Event $event) {
+        if ($user_id = Auth::id()) {
+            $event->users()->detach([$user_id]);
+            return response()->json([
+                'success' => true
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Un-authenticated!'
+            ], 401);
+        }
     }
 }

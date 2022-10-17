@@ -28,6 +28,8 @@ Route::middleware('auth:sanctum')->group(function() {
 
     // Event Module
     Route::apiResource('events', EventController::class)->except('index', 'show');
+    Route::post('/attend-event/{event}', [EventController::class, 'attend'])->where('id', '[0-9]+');
+    Route::post('/unattend-event/{event}', [EventController::class, 'unattend'])->where('id', '[0-9]+');
 });
 
 // Event Module
