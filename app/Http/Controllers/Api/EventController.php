@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Http\Resources\Event as EventResource;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class EventController extends BaseController
 {
@@ -37,7 +39,25 @@ class EventController extends BaseController
      */
     public function store(Request $request)
     {
-        //
+        if (Gate::denies('edit-events')) {
+            return $this->sendError('Unauthorized.', ['error'=>'Unauthorized']);
+        }
+
+        // Save image
+        $imagePath = '';
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images/events', 'public');
+        }
+
+        $input = $request->all();
+        if ($imagePath != '') {
+            $input['image_path'] = $imagePath;
+        }
+
+        $event = new Event();
+        $event->fill($input)->save();
+
+        return new EventResource($event);
     }
 
     /**
@@ -68,9 +88,15 @@ class EventController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(Event $event) {
+        if (Gate::denies('edit-events')) {
+            return $this->sendError('Unauthorized.', ['error'=>'Unauthorized']);
+        }
+
+//        DB::table('event_user')->where('event_id', $event->id)->delete();
+        Event::where('id', $event->id)->delete();
+
+        return $this->sendResponse($event, 'Event deleted successfully!');
     }
 
     public function attend(Event $event) {
