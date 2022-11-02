@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -32,14 +33,18 @@ class AuthController extends BaseController {
         if($validator->fails()){
             return $this->sendError('Validation Error.', $validator->errors());
         }
+        try {
+            $input = $request->all();
+            $input['password'] = bcrypt($input['password']);
+            $user = User::create($input);
+            $success['token'] =  $user->createToken('MyApp')->plainTextToken;
+            $success['name'] =  $user->name;
 
-        $input = $request->all();
-        $input['password'] = bcrypt($input['password']);
-        $user = User::create($input);
-        $success['token'] =  $user->createToken('MyApp')->plainTextToken;
-        $success['name'] =  $user->name;
+            return $this->sendResponse($success, 'User register successfully.');
+        } catch (QueryException $err) {
+            return $this->sendError("Register unsuccessfully!", [$err->getMessage()]);
+        }
 
-        return $this->sendResponse($success, 'User register successfully.');
     }
 
     public function me(Request $request) {
