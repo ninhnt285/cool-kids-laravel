@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('type', 50)->nullable();
             $table->date('date')->nullable();
-            $table->time('time')->nullable();
+            $table->date('time')->nullable();
             $table->text('description')->nullable();
             // Extra fields
             $table->string('slug')->nullable();

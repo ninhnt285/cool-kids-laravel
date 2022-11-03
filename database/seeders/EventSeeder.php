@@ -19,8 +19,8 @@ class EventSeeder extends Seeder
         DB::table('events')->insert([
             'name' => 'Event 1',
             'type' => 'Santa',
-            'date' => '2022-12-31',
-            'time' => '08:00:00',
+            'date' => '2022-12-31 08:00:00',
+            'time' => '2022-12-31 08:00:00',
             'description' => "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.",
 
             'slug' => 'event-1',
@@ -32,9 +32,9 @@ class EventSeeder extends Seeder
 
         DB::table('events')->insert([
             'name' => 'Event 2',
-            'type' => 'Pocker',
-            'date' => '2022-12-15',
-            'time' => '15:00:00',
+            'type' => 'Poker',
+            'date' => '2022-12-15 15:00:00',
+            'time' => '2022-12-15 15:00:00',
             'description' => "Long text",
 
             'slug' => 'event-2',
