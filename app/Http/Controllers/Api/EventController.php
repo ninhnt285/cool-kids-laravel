@@ -77,9 +77,26 @@ class EventController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Event $event)
     {
-        //
+        if (Gate::denies('edit-events')) {
+            return $this->sendError('Unauthorized.', ['error'=>'Unauthorized']);
+        }
+
+        // Save image
+        $imagePath = '';
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images/events', 'public');
+        }
+
+        $input = $request->except(['image']);
+        if ($imagePath != '') {
+            $input['image_path'] = $imagePath;
+        }
+
+        $event->fill($input)->save();
+
+        return new EventResource($event);
     }
 
     /**

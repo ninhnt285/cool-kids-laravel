@@ -11,6 +11,7 @@ use App\Models\User;
 use App\Http\Resources\User as UserResource;
 
 class AuthController extends BaseController {
+
     public function login(Request $request) {
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
@@ -18,7 +19,7 @@ class AuthController extends BaseController {
             $success['name'] =  $user->name;
             return $this->sendResponse($success, 'User login successfully.');
         } else {
-            return $this->sendError('Unauthorized.', ['error'=>'Unauthorized']);
+            return $this->sendError('Wrong password or email!.', ['error'=>'Wrong password or email!']);
         }
     }
 
