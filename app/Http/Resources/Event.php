@@ -21,7 +21,7 @@ class Event extends JsonResource
             'date' => $this->date,
             'time' => $this->time,
             'description' => $this->description,
-            'users' => new UserCollection($this->whenLoaded('users')),
+            'users' => new UserCollection($this->users),
 
 //            'image_path' => $this->image_path,
 //            'image_url' => $this->image_path ? asset('storage' . $this->image_path) : null,
