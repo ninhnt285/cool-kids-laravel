@@ -29,5 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('edit-events', function (User $user) {
             return ($user->role < 3);
         });
+
+        Gate::define('edit-users', function (User $user) {
+            return ($user->role == 1);
+        });
     }
 }

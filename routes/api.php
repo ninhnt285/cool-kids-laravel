@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\EventController;
+use App\Http\Controllers\Api\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,7 +25,9 @@ Route::controller(AuthController::class)->group(function() {
 
 Route::middleware('auth:sanctum')->group(function() {
     // User Module
-    Route::get('users/me', [AuthController::class, 'me']);
+    Route::get('users/me', [UserController::class, 'getMe']);
+    Route::put('users/me', [UserController::class, 'updateMe']);
+    Route::apiResource('users', UserController::class)->except('index', 'show', 'destroy');
 
     // Event Module
     Route::apiResource('events', EventController::class)->except('index', 'show');
@@ -34,3 +37,4 @@ Route::middleware('auth:sanctum')->group(function() {
 
 // Event Module
 Route::apiResource('events', EventController::class)->only('index', 'show');
+Route::apiResource('users', UserController::class)->only('index', 'show');

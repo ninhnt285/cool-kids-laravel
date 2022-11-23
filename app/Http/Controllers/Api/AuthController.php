@@ -45,7 +45,6 @@ class AuthController extends BaseController {
         } catch (QueryException $err) {
             return $this->sendError("Register unsuccessfully!", [$err->getMessage()]);
         }
-
     }
 
     public function me(Request $request) {
