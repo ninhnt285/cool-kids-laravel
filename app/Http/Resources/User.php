@@ -15,10 +15,11 @@ class User extends JsonResource
     public function toArray($request)
     {
         return [
-          'id' => $this->id,
-          'name' => $this->name,
-          'email' => $this->email,
-          'role' => $this->role
+            'id' => $this->id,
+            'name' => $this->name,
+            'email' => $this->email,
+            'role' => $this->role,
+            'events' => new EventCollection($this->whenLoaded('events'))
         ];
     }
 }

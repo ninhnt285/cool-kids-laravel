@@ -67,7 +67,7 @@ class EventController extends BaseController
      * @return \Illuminate\Http\Response
      */
     public function show(Event $event) {
-        return new EventResource($event);
+        return new EventResource($event->load('users'));
     }
 
     /**

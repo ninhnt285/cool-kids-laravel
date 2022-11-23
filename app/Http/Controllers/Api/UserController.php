@@ -72,7 +72,7 @@ class UserController extends Controller
     public function getMe(Request $request) {
         $user = Auth::user();
 
-        return new UserResource($user);
+        return new UserResource($user->load('events'));
     }
 
     public function updateMe(Request $request) {

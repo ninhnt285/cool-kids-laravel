@@ -21,13 +21,13 @@ class Event extends JsonResource
             'date' => $this->date,
             'time' => $this->time,
             'description' => $this->description,
+            'users' => new UserCollection($this->whenLoaded('users')),
 
-
-            'image_path' => $this->image_path,
-            'image_url' => $this->image_path ? asset('storage' . $this->image_path) : null,
-            'short_description' => $this->short_description,
-            'start_time' => $this->start_time,
-            'end_time' => $this->end_time,
+//            'image_path' => $this->image_path,
+//            'image_url' => $this->image_path ? asset('storage' . $this->image_path) : null,
+//            'short_description' => $this->short_description,
+//            'start_time' => $this->start_time,
+//            'end_time' => $this->end_time,
         ];
     }
 }

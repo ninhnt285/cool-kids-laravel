@@ -48,9 +48,9 @@ class AuthController extends BaseController {
     }
 
     public function me(Request $request) {
-        $user = Auth::user();
-
-        return new UserResource($user);
+        $authUser = Auth::user();
+        $user = User::where('id', $authUser->id)->first();
+        return new UserResource($user->load('events'));
     }
 
     public function test401() {
