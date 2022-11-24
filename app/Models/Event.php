@@ -11,6 +11,19 @@ class Event extends Model
 
     protected $guarded = [];
 
+    protected $fillable = [
+        'name',
+        'type',
+        'date',
+        'description',
+
+        'slug',
+        'image_path',
+        'short_description',
+        'start_time',
+        'end_time'
+    ];
+
     public function users() {
         return $this->belongsToMany(User::class);
     }
